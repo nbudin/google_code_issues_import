@@ -24,7 +24,7 @@ module GoogleCode
       @issues ||= read
     end
   
-    #protected
+    protected
   
     def read_extra_issue_details(id)
       puts "Reading issue details for issue #{id}"
