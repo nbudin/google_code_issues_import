@@ -1,6 +1,5 @@
 require 'open-uri'
 require 'csv'
-require 'ostruct'
 
 require 'rubygems'
 require 'hpricot'
