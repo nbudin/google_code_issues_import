@@ -1,3 +1,6 @@
+# This was originally written as a Github gist by reidab.
+# http://gist.github.com/98009
+
 require 'open-uri'
 require 'csv'
 
