@@ -1,0 +1,3 @@
+[submodule "octopi"]
+	path = octopi
+	url = git://github.com/fcoury/octopi.git
