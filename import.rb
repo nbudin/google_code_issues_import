@@ -7,7 +7,7 @@ if ARGV.length < 2
   exit 1
 end
 
-reader = GoogleCode::IssueReader.new("procon")
+reader = GoogleCode::IssueReader.new(ARGV[0])
 issues = reader.issues
 
 authenticated do |g|
@@ -29,6 +29,7 @@ authenticated do |g|
     if issue[:milestone] and issue[:milestone].strip.length > 0
       gh_labels.push(issue[:milestone].downcase)
     end
+    gh_labels = gh_labels.collect { |label| label.gsub(/\W/, "-") }
     gh_issue.add_label(*gh_labels)
 
     issue[:comments].each do |comment|
@@ -38,7 +39,11 @@ authenticated do |g|
     end
 
     if issue[:status] == "Fixed"
-      gh_issue.close
+      begin
+        gh_issue.close
+      rescue
+        puts "Warning: Couldn't close issue #{gh_issue.id}, you will have to close it manually"
+      end
     end
   end
 end
